@@ -1,5 +1,5 @@
-import type { Producto } from "../types/producto.ts";
-import type { Categoria } from "../types/Categoria.ts";
+import type { Producto } from "../types/Product.ts";
+import type Categoria from "../types/categoria.ts";
 
 export const categories: Categoria[] = [
   {
@@ -30,62 +30,71 @@ export const products: Producto[] = [
     nombre: "Auriculares Bluetooth",
     precio: 15000,
     categoria: categories[0],
-    img: "auriculares.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/auriculares/300/300",
   },
   {
     id: 2,
     nombre: "Parlante Portátil",
     precio: 22000,
     categoria: categories[0],
-    img: "parlante.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/parlante/300/300",
   },
   {
     id: 3,
     nombre: "Mouse Gamer",
     precio: 12000,
     categoria: categories[1],
-    img: "mouse.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/mouse/300/300",
   },
   {
     id: 4,
     nombre: "Teclado Mecánico",
     precio: 30000,
     categoria: categories[1],
-    img: "teclado.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/teclado/300/300",
   },
   {
     id: 5,
     nombre: "Monitor 24''",
     precio: 180000,
     categoria: categories[2],
-    img: "monitor.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/monitor/300/300",
   },
   {
     id: 6,
     nombre: "Soporte para Notebook",
     precio: 8000,
     categoria: categories[3],
-    img: "soporte.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/soporte/300/300",
   },
   {
     id: 7,
     nombre: "Webcam HD",
     precio: 25000,
     categoria: categories[3],
-    img: "webcam.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/webcam/300/300",
   },
   {
     id: 8,
     nombre: "Disco SSD 1TB",
     precio: 95000,
     categoria: categories[4],
-    img: "ssd.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/ssd/300/300",
   },
   {
     id: 9,
     nombre: "Pendrive 64GB",
     precio: 10000,
     categoria: categories[4],
-    img: "pendrive.jpg",
+    cantidad: 1,
+    img: "https://picsum.photos/seed/pendrive/300/300",
   },
 ];
