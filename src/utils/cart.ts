@@ -20,3 +20,13 @@ export const agregarAlCarrito = (id: number, products: Producto[]) => {
     console.log(productsCart);
   }
 };
+
+export const eliminarDelCarrito = (id: number) => {
+  const productsCart: Producto[] = getProduct()
+    ? JSON.parse(getProduct() as string)
+    : [];
+
+  const updatedCart = productsCart.filter((p) => p.id !== id);
+  saveProduct(updatedCart);
+  window.location.reload();
+};
