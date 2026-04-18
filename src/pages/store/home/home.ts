@@ -11,7 +11,6 @@ if (productosDiv) {
       <div class="producto">
         <h3>${producto.nombre}</h3>
         <p>Precio: $${producto.precio.toLocaleString()}</p>
-        <p>Cantidad: ${producto.cantidad}</p>
         <div><img src="${producto.img}" alt="${producto.nombre}"></div>
         <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
       </div>

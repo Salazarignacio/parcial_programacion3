@@ -2,16 +2,17 @@ import type { Producto } from "../../../types/Product";
 import { eliminarDelCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
 
-getProduct
+getProduct;
 
 const carritoDiv = document.getElementById("seccion-carrito");
-
-const cartItems: Producto[] = getProduct()  ? JSON.parse(getProduct() as string)
+const cartItems: Producto[] = getProduct()
+  ? JSON.parse(getProduct() as string)
   : [];
+const totalDiv = document.createElement("div");
 
-/* Mostrar nombre, precio y cantidad de cada producto en el carrito */
 if (carritoDiv) {
-  carritoDiv.innerHTML = cartItems.map(
+  carritoDiv.innerHTML = cartItems
+    .map(
       (producto) => `
       <div class="cart">
         <h3>${producto.nombre}</h3>
@@ -33,3 +34,14 @@ botones.forEach((btn) => {
     eliminarDelCarrito(id);
   });
 });
+
+const total = cartItems.reduce((acc, producto) => {
+  return acc + producto.precio * producto.cantidad;
+}, 0);
+console.log("ss");
+
+totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
+totalDiv.classList.add("total");
+if (carritoDiv) {
+  carritoDiv.appendChild(totalDiv);
+}
