@@ -38,7 +38,6 @@ botones.forEach((btn) => {
 const total = cartItems.reduce((acc, producto) => {
   return acc + producto.precio * producto.cantidad;
 }, 0);
-console.log("ss");
 
 totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
 totalDiv.classList.add("total");

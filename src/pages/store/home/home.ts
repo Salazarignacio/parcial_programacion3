@@ -1,23 +1,49 @@
-import { products } from "../../../data/data";
+import { products, categories } from "../../../data/data";
 import { agregarAlCarrito } from "../../../utils/cart";
 
 const productosDiv = document.getElementById("seccion-productos");
+const botonesDiv = document.createElement("div");
+botonesDiv.classList.add("botones");
 
-/* Mostrar nombre, precio y cantidad de cada producto */
+categories.forEach((categoria) => {
+  const btn = document.createElement("button");
+  btn.textContent = categoria.nombre;
+  botonesDiv.appendChild(btn);
+});
+
 if (productosDiv) {
   productosDiv.innerHTML = products
     .map(
       (producto) => `
-      <div class="producto">
+        <div class="producto">
         <h3>${producto.nombre}</h3>
         <p>Precio: $${producto.precio.toLocaleString()}</p>
         <div><img src="${producto.img}" alt="${producto.nombre}"></div>
         <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
-      </div>
-    `,
+        </div>
+        `,
     )
     .join("");
+  productosDiv.appendChild(botonesDiv);
 }
+botonesDiv.addEventListener("click", (e) => {
+  const target = e.target as HTMLButtonElement;
+  productosDiv!.innerHTML = "";
+  productosDiv!.appendChild(botonesDiv);
+  products
+    .filter((p) => p.categoria.nombre === target.textContent)
+    .forEach((producto) => {
+      const productoDiv = document.createElement("div");
+      productoDiv.classList.add("producto");
+      productoDiv.innerHTML = `
+      <h3>${producto.nombre}</h3>
+      <p>Precio: $${producto.precio.toLocaleString()}</p>
+      <div><img src="${producto.img}" alt="${producto.nombre}"></div>
+      <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+    `;
+      productosDiv?.appendChild(productoDiv);
+    });
+});
 
 const botones = document.querySelectorAll(".btn-agregar");
 
