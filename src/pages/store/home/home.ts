@@ -12,19 +12,24 @@ categories.forEach((categoria) => {
 });
 
 if (productosDiv) {
-  productosDiv.innerHTML = products
-    .map(
-      (producto) => `
-        <div class="producto">
-        <h3>${producto.nombre}</h3>
-        <p>Precio: $${producto.precio.toLocaleString()}</p>
-        <div><img src="${producto.img}" alt="${producto.nombre}"></div>
-        <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
-        </div>
-        `,
-    )
-    .join("");
+  productosDiv.innerHTML = ""; // limpio una sola vez
+
   productosDiv.appendChild(botonesDiv);
+
+  products.forEach((producto) => {
+    const div = document.createElement("div");
+    div.classList.add("producto");
+
+    div.innerHTML = `
+      <h3>${producto.nombre}</h3>
+      <p>Precio: $${producto.precio.toLocaleString()}</p>
+      <div><img src="${producto.img}" alt="${producto.nombre}"></div>
+      <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+    `;
+
+    productosDiv.appendChild(div);
+  });
+  manejarAgregarAlCarrito(); 
 }
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
@@ -43,13 +48,16 @@ botonesDiv.addEventListener("click", (e) => {
     `;
       productosDiv?.appendChild(productoDiv);
     });
+  manejarAgregarAlCarrito();
 });
 
-const botones = document.querySelectorAll(".btn-agregar");
+function manejarAgregarAlCarrito() {
+  const botones = document.querySelectorAll(".btn-agregar");
 
-botones.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const id = Number(btn.getAttribute("data-id"));
-    agregarAlCarrito(id, products);
+  botones.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-id"));
+      agregarAlCarrito(id, products);
+    });
   });
-});
+}
