@@ -10,10 +10,16 @@ const cartItems: Producto[] = getProduct()
   : [];
 const totalDiv = document.createElement("div");
 
-if (carritoDiv) {
-  carritoDiv.innerHTML = cartItems
-    .map(
-      (producto) => `
+function renderCart(): void {
+  if (cartItems.length === 0) {
+    if (carritoDiv) {
+      carritoDiv.innerHTML = "<p>El carrito está vacío.</p>";
+    }
+  } else {
+    if (carritoDiv) {
+      carritoDiv.innerHTML = cartItems
+        .map(
+          (producto) => `
       <div class="cart">
         <h3>${producto.nombre}</h3>
         <p>Precio: $${producto.precio.toLocaleString()}</p>
@@ -22,25 +28,29 @@ if (carritoDiv) {
         <button class="btn-eliminar" data-id="${producto.id}">Eliminar del carrito</button>
       </div>
     `,
-    )
-    .join("");
-}
+        )
+        .join("");
+    }
+  }
 
-const botones = document.querySelectorAll(".btn-eliminar");
+  const botones = document.querySelectorAll(".btn-eliminar");
 
-botones.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const id = Number(btn.getAttribute("data-id"));
-    eliminarDelCarrito(id);
+  botones.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-id"));
+      eliminarDelCarrito(id);
+    });
   });
-});
 
-const total = cartItems.reduce((acc, producto) => {
-  return acc + producto.precio * producto.cantidad;
-}, 0);
+  const total = cartItems.reduce((acc, producto) => {
+    return acc + producto.precio * producto.cantidad;
+  }, 0);
 
-totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
-totalDiv.classList.add("total");
-if (carritoDiv) {
-  carritoDiv.appendChild(totalDiv);
+  totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
+  totalDiv.classList.add("total");
+  if (carritoDiv) {
+    carritoDiv.appendChild(totalDiv);
+  }
 }
+
+renderCart();

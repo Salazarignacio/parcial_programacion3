@@ -16,7 +16,9 @@ botonesDiv.classList.add("botones");
 categories.forEach((categoria: Categoria) => {
   const btn = document.createElement("button");
   btn.textContent = categoria.nombre;
+  botonesDiv.classList.add("btn-categoria");
   botonesDiv.appendChild(btn);
+  
 });
 
 function render(prods: Producto[]): void {
@@ -46,7 +48,7 @@ function render(prods: Producto[]): void {
       <h3>${producto.nombre}</h3>
       <p>Precio: $${producto.precio.toLocaleString()}</p>
       <div><img src="${producto.img}" alt="${producto.nombre}"></div>
-      <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+      <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
     `;
       productosDiv.appendChild(div);
     });
