@@ -26,6 +26,18 @@ function render(prods: Producto[]): void {
     productosDiv.appendChild(botonesDiv);
     inputBusqueda.focus();
 
+    if (prods.length === 0) {
+      productosDiv.innerHTML +=
+        "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
+      const btnVolver = document.getElementById("btn-volver");
+
+      btnVolver?.addEventListener("click", () => {
+        render(products);
+      });
+
+      return;
+    }
+
     prods.forEach((producto: Producto) => {
       const div = document.createElement("div");
       div.classList.add("producto");
@@ -52,8 +64,10 @@ botonesDiv.addEventListener("click", (e) => {
 
 function manejarInputBusqueda(e: Event): void {
   const query = (e.target as HTMLInputElement).value.toLowerCase();
-  const filtradosproducts = products.filter((p) => p.nombre.toLowerCase().includes(query));
-  
+  const filtradosproducts = products.filter((p) =>
+    p.nombre.toLowerCase().includes(query),
+  );
+
   render(filtradosproducts);
 }
 
