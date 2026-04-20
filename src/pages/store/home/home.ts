@@ -24,6 +24,7 @@ function render(prods: Producto[]): void {
     productosDiv.innerHTML = "";
     productosDiv.appendChild(inputBusqueda);
     productosDiv.appendChild(botonesDiv);
+    inputBusqueda.focus();
 
     prods.forEach((producto: Producto) => {
       const div = document.createElement("div");
