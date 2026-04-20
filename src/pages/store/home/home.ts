@@ -1,19 +1,26 @@
 import { products, categories } from "../../../data/data";
+import type Categoria from "../../../types/categoria";
 import { agregarAlCarrito } from "../../../utils/cart";
 
 const productosDiv = document.getElementById("seccion-productos");
+const inputBusqueda = document.createElement("input");
 const botonesDiv = document.createElement("div");
+
+inputBusqueda.type = "text";
+inputBusqueda.placeholder = "Buscar productos...";
+inputBusqueda.addEventListener("input", manejarInputBusqueda);
+
 botonesDiv.classList.add("botones");
 
-categories.forEach((categoria) => {
+categories.forEach((categoria: Categoria) => {
   const btn = document.createElement("button");
   btn.textContent = categoria.nombre;
   botonesDiv.appendChild(btn);
 });
 
 if (productosDiv) {
-  productosDiv.innerHTML = ""; // limpio una sola vez
-
+  productosDiv.innerHTML = "";
+  productosDiv.appendChild(inputBusqueda);
   productosDiv.appendChild(botonesDiv);
 
   products.forEach((producto) => {
@@ -29,11 +36,12 @@ if (productosDiv) {
 
     productosDiv.appendChild(div);
   });
-  manejarAgregarAlCarrito(); 
+  manejarAgregarAlCarrito();
 }
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
   productosDiv!.innerHTML = "";
+  productosDiv!.appendChild(inputBusqueda);
   productosDiv!.appendChild(botonesDiv);
   products
     .filter((p) => p.categoria.nombre === target.textContent)
@@ -51,7 +59,12 @@ botonesDiv.addEventListener("click", (e) => {
   manejarAgregarAlCarrito();
 });
 
-function manejarAgregarAlCarrito() {
+function manejarInputBusqueda(e: Event): void {
+  const query = (e.target as HTMLInputElement).value.toLowerCase();
+  console.log(query);
+}
+
+function manejarAgregarAlCarrito(): void {
   const botones = document.querySelectorAll(".btn-agregar");
 
   botones.forEach((btn) => {
