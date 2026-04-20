@@ -1,5 +1,6 @@
 import { products, categories } from "../../../data/data";
 import type Categoria from "../../../types/categoria";
+import type { Producto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
 
 const productosDiv = document.getElementById("seccion-productos");
@@ -18,50 +19,41 @@ categories.forEach((categoria: Categoria) => {
   botonesDiv.appendChild(btn);
 });
 
-if (productosDiv) {
-  productosDiv.innerHTML = "";
-  productosDiv.appendChild(inputBusqueda);
-  productosDiv.appendChild(botonesDiv);
+function render(prods: Producto[]): void {
+  if (productosDiv) {
+    productosDiv.innerHTML = "";
+    productosDiv.appendChild(inputBusqueda);
+    productosDiv.appendChild(botonesDiv);
 
-  products.forEach((producto) => {
-    const div = document.createElement("div");
-    div.classList.add("producto");
+    prods.forEach((producto: Producto) => {
+      const div = document.createElement("div");
+      div.classList.add("producto");
 
-    div.innerHTML = `
+      div.innerHTML = `
       <h3>${producto.nombre}</h3>
       <p>Precio: $${producto.precio.toLocaleString()}</p>
       <div><img src="${producto.img}" alt="${producto.nombre}"></div>
       <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
     `;
-
-    productosDiv.appendChild(div);
-  });
-  manejarAgregarAlCarrito();
+      productosDiv.appendChild(div);
+    });
+    manejarAgregarAlCarrito();
+  }
 }
+
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
-  productosDiv!.innerHTML = "";
-  productosDiv!.appendChild(inputBusqueda);
-  productosDiv!.appendChild(botonesDiv);
-  products
-    .filter((p) => p.categoria.nombre === target.textContent)
-    .forEach((producto) => {
-      const productoDiv = document.createElement("div");
-      productoDiv.classList.add("producto");
-      productoDiv.innerHTML = `
-      <h3>${producto.nombre}</h3>
-      <p>Precio: $${producto.precio.toLocaleString()}</p>
-      <div><img src="${producto.img}" alt="${producto.nombre}"></div>
-      <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
-    `;
-      productosDiv?.appendChild(productoDiv);
-    });
-  manejarAgregarAlCarrito();
+  const filtradosproducts = products.filter(
+    (p) => p.categoria.nombre === target.textContent,
+  );
+  render(filtradosproducts);
 });
 
 function manejarInputBusqueda(e: Event): void {
   const query = (e.target as HTMLInputElement).value.toLowerCase();
-  console.log(query);
+  const filtradosproducts = products.filter((p) => p.nombre.toLowerCase().includes(query));
+  
+  render(filtradosproducts);
 }
 
 function manejarAgregarAlCarrito(): void {
@@ -74,3 +66,5 @@ function manejarAgregarAlCarrito(): void {
     });
   });
 }
+
+render(products);
