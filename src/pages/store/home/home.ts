@@ -24,21 +24,27 @@ categories.forEach((categoria: Categoria) => {
 function render(prods: Producto[]): void {
   if (productosDiv) {
     productosDiv.innerHTML = "";
-    productosDiv.appendChild(inputBusqueda);
-    productosDiv.appendChild(botonesDiv);
+    const productosDiv2 = document.createElement("div");
+    productosDiv2.classList.add("busqueda-productos");
+    productosDiv2.appendChild(inputBusqueda);
+    productosDiv2.appendChild(botonesDiv);
+    productosDiv.appendChild(productosDiv2);
+    
     inputBusqueda.focus();
-
+    
     if (prods.length === 0) {
       productosDiv.innerHTML +=
-        "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
+      "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
       const btnVolver = document.getElementById("btn-volver");
-
+      
       btnVolver?.addEventListener("click", () => {
         render(products);
       });
-
+      
       return;
     }
+    const productosDiv3 = document.createElement("div");
+    productosDiv3.classList.add("listado-productos");
 
     prods.forEach((producto: Producto) => {
       const div = document.createElement("div");
@@ -46,12 +52,13 @@ function render(prods: Producto[]): void {
 
       div.innerHTML = `
       <h3>${producto.nombre}</h3>
-      <p>Precio: $${producto.precio.toLocaleString()}</p>
       <div><img src="${producto.img}" alt="${producto.nombre}"></div>
+      <p>$${producto.precio.toLocaleString()}</p>
       <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
     `;
-      productosDiv.appendChild(div);
+      productosDiv3.appendChild(div);
     });
+    productosDiv.appendChild(productosDiv3);
     manejarAgregarAlCarrito();
   }
 }

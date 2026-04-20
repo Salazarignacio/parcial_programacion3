@@ -5,28 +5,121 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background-color: #e2cb7f;
-  padding: 20px;
+.logo-img {
+  width: 150px;
 }
 
-.seccion-productos {
+.contenedor1 {
+  background-color: hsl(209, 33%, 62%);
+  color: #fff;
+  padding: 0px 20px 0 20px;
+
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  background: radial-gradient(circle at 20% 30%, #e9e9e9, #dadada);
+  color: #fff;
+}
+
+.busqueda-productos {
+  gap: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.busqueda-productos input {
+  width: 40%;
+  padding: 10px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.productos-container {
+}
+
+.listado-productos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  margin-top: 20px;
-  background-color: #7ebe8e;
 }
 
 .cart-nav {
-  margin-top: 20px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+}
+
+.cart-nav img {
+  width: 100px;
+}
+
+.producto {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 230px;
+
+  color: #020617;
+  text-align: left;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.producto:hover {
+  
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.producto img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+
+  border-radius: 5px;
+}
+.producto button {
+  background-color: #7e9fbe;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.producto button:hover {
+  background-color: #5a679e;
 }
 
 .btn-categoria {
-    position: absolute;
-    top: 55px;
-    left: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  border: none;
+}
+
+.btn-categoria button {
+  background-color: #e78484;
+  border: solid 1px #c75a5a;
+  color: #fff;
+  
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-categoria button:hover {
+  background-color: #c75a5a;
+  border: solid 1px #c75a5a;
 }
