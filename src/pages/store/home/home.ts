@@ -1,5 +1,5 @@
-import { products, categorias } from "../../../data/data";
-import type {ICategory} from "../../../types/categoria";
+import { products, getCategories } from "../../../data/data";
+import type { ICategory } from "../../../types/categoria";
 import type { IProducto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
 
@@ -13,7 +13,7 @@ inputBusqueda.addEventListener("input", manejarInputBusqueda);
 
 botonesDiv.classList.add("botones");
 
-categorias.forEach((categoria: ICategory) => {
+getCategories().forEach((categoria: ICategory) => {
   const btn = document.createElement("button");
   btn.textContent = categoria.nombre;
   botonesDiv.classList.add("btn-categoria");
@@ -33,7 +33,7 @@ function render(prods: IProducto[]): void {
 
     if (prods.length === 0) {
       productosDiv.innerHTML +=
-        "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
+        `<div class="sin-productos"><p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button></div>`;
       const btnVolver = document.getElementById("btn-volver");
 
       btnVolver?.addEventListener("click", () => {
@@ -50,6 +50,7 @@ function render(prods: IProducto[]): void {
 
       div.innerHTML = `
       <h3>${producto.nombre}</h3>
+      <p>${producto.descripcion}</p>
       <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
       <p>$${producto.precio.toLocaleString()}</p>
       <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
@@ -63,8 +64,9 @@ function render(prods: IProducto[]): void {
 
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
-  const filtradosproducts: IProducto[] = products.filter(
-    (p) => p.categorias.some((c) => c.nombre === target.textContent),
+  const categorias = getCategories() as ICategory[];
+  const filtradosproducts: IProducto[] = products.filter((p) =>
+    p.categorias.some((c: ICategory) => c.nombre === target.textContent),
   );
   render(filtradosproducts);
 });

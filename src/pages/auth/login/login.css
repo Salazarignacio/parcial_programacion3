@@ -1,0 +1,95 @@
+/* Reset básico (podés omitir si ya lo compartís globalmente) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Fondo general igual al resto */
+body {
+  background: radial-gradient(circle at 20% 30%, #ffffff, #e6e6e6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor del login */
+#form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #020617;
+}
+
+/* Agrupación label + input */
+#form div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Labels */
+label {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+/* Inputs y select */
+input,
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus estilo moderno */
+input:focus,
+select:focus {
+  border-color: #f03737;
+  box-shadow: 0 0 0 2px rgba(240, 55, 55, 0.2);
+}
+
+/* Botón */
+button {
+  margin-top: 10px;
+  padding: 10px;
+
+  background-image: linear-gradient(rgb(247, 111, 93), rgb(247, 91, 91));
+  border: solid 1px #f03737;
+  color: #fff;
+
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover botón */
+button:hover {
+  background-image: linear-gradient(rgb(247, 91, 91), rgb(247, 111, 93));
+  transform: translateY(-1px);
+}
+
+/* Placeholder más suave */
+input::placeholder {
+  color: #94a3b8;
+}

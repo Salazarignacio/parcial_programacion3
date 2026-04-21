@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at 20% 30%, #ffffff, #e6e6e6);
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor principal tipo tarjeta */
+.contenedor-home {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Título */
+h1 {
+  color: #020617;
+  text-align: center;
+}
+
+/* Link estilo botón */
+.link-tienda {
+  text-decoration: none;
+
+  background-image: linear-gradient(rgb(243, 240, 55), rgb(236, 200, 42));
+  border: solid 1px #f0a037;
+
+  color: #020617;
+  font-weight: bold;
+
+  padding: 10px 20px;
+  border-radius: 6px;
+
+  transition: all 0.2s ease;
+}
+
+.link-tienda:hover {
+  background-image: linear-gradient(rgb(236, 200, 42), rgb(243, 240, 55));
+  transform: translateY(-1px);
+}
+
+/* Botón logout */
+#logoutButton {
+  background-image: linear-gradient(rgb(247, 111, 93), rgb(247, 91, 91));
+  border: solid 1px #f03737;
+  color: #fff;
+
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: all 0.2s ease;
+}
+
+#logoutButton:hover {
+  background-image: linear-gradient(rgb(247, 91, 91), rgb(247, 111, 93));
+  transform: translateY(-1px);
+}
