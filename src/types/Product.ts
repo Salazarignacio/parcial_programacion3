@@ -1,10 +1,15 @@
- import type  Categoria from "./categoria";
+import type { ICategory } from "./categoria";
 
-export interface Producto {
+export interface IProducto {
   id: number;
+  eliminado: boolean;
+  createdAt: string;
   nombre: string;
   precio: number;
-  img: string;
+  descripcion: string;
+  stock: number;
+  imagen: string;
   cantidad: number;
-  categoria: Categoria;
+  disponible: boolean;
+  categorias: ICategory[];
 }

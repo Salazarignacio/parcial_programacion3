@@ -1,6 +1,6 @@
-import { products, categories } from "../../../data/data";
-import type Categoria from "../../../types/categoria";
-import type { Producto } from "../../../types/Product";
+import { products, categorias } from "../../../data/data";
+import type {ICategory} from "../../../types/categoria";
+import type { IProducto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
 
 const productosDiv = document.getElementById("seccion-productos");
@@ -13,14 +13,14 @@ inputBusqueda.addEventListener("input", manejarInputBusqueda);
 
 botonesDiv.classList.add("botones");
 
-categories.forEach((categoria: Categoria) => {
+categorias.forEach((categoria: ICategory) => {
   const btn = document.createElement("button");
   btn.textContent = categoria.nombre;
   botonesDiv.classList.add("btn-categoria");
   botonesDiv.appendChild(btn);
 });
 
-function render(prods: Producto[]): void {
+function render(prods: IProducto[]): void {
   if (productosDiv) {
     productosDiv.innerHTML = "";
     const productosDiv2 = document.createElement("div");
@@ -44,13 +44,13 @@ function render(prods: Producto[]): void {
     const productosDiv3 = document.createElement("div");
     productosDiv3.classList.add("listado-productos");
 
-    prods.forEach((producto: Producto) => {
+    prods.forEach((producto: IProducto) => {
       const div = document.createElement("div");
       div.classList.add("producto");
 
       div.innerHTML = `
       <h3>${producto.nombre}</h3>
-      <div><img src="${producto.img}" alt="${producto.nombre}"></div>
+      <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
       <p>$${producto.precio.toLocaleString()}</p>
       <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
     `;
@@ -63,15 +63,15 @@ function render(prods: Producto[]): void {
 
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
-  const filtradosproducts = products.filter(
-    (p) => p.categoria.nombre === target.textContent,
+  const filtradosproducts: IProducto[] = products.filter(
+    (p) => p.categorias.some((c) => c.nombre === target.textContent),
   );
   render(filtradosproducts);
 });
 
 function manejarInputBusqueda(e: Event): void {
   const query = (e.target as HTMLInputElement).value.toLowerCase();
-  const filtradosproducts = products.filter((p) =>
+  const filtradosproducts: IProducto[] = products.filter((p) =>
     p.nombre.toLowerCase().includes(query),
   );
 
