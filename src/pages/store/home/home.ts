@@ -32,8 +32,7 @@ function render(prods: IProducto[]): void {
     inputBusqueda.focus();
 
     if (prods.length === 0) {
-      productosDiv.innerHTML +=
-        `<div class="sin-productos"><p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button></div>`;
+      productosDiv.innerHTML += `<div class="sin-productos"><p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button></div>`;
       const btnVolver = document.getElementById("btn-volver");
 
       btnVolver?.addEventListener("click", () => {
@@ -50,10 +49,15 @@ function render(prods: IProducto[]): void {
 
       div.innerHTML = `
       <h3>${producto.nombre}</h3>
-      <p>${producto.descripcion}</p>
-      <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
-      <p>$${producto.precio.toLocaleString()}</p>
-      <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
+<div class="contenedor-agregar"><img src="${producto.imagen}" alt="${producto.nombre}"></div>
+<p class="descripcion">${producto.descripcion}</p>
+<p class="precio">$${producto.precio.toLocaleString()}</p>
+<div class="agregar-carrito">
+
+<input type="number" min="1" max="${producto.stock}" value="1" id="cantidad-${producto.id}" class="input-cantidad">
+<button class="btn-agregar" data-id="${producto.id}">Agregar</button>
+
+</div>
     `;
       productosDiv3.appendChild(div);
     });
@@ -64,7 +68,6 @@ function render(prods: IProducto[]): void {
 
 botonesDiv.addEventListener("click", (e) => {
   const target = e.target as HTMLButtonElement;
-  const categorias = getCategories() as ICategory[];
   const filtradosproducts: IProducto[] = products.filter((p) =>
     p.categorias.some((c: ICategory) => c.nombre === target.textContent),
   );
@@ -86,7 +89,8 @@ function manejarAgregarAlCarrito(): void {
   botones.forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = Number(btn.getAttribute("data-id"));
-      agregarAlCarrito(id, products);
+      const cantidad = Number((document.getElementById(`cantidad-${id}`) as HTMLInputElement)?.value) || 1;
+      agregarAlCarrito(id, products, cantidad);
     });
   });
 }

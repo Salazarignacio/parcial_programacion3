@@ -1,9 +1,13 @@
-import type { Producto } from "../types/Product";
+import type { IProducto } from "../types/Product";
 import { getProduct, saveProduct } from "./localStorage";
 
-export const agregarAlCarrito = (id: number, products: Producto[]) => {
+export const agregarAlCarrito = (
+  id: number,
+  products: IProducto[],
+  cantidad: number,
+) => {
   const producto = products.find((p) => p.id === id);
-  const productsCart: Producto[] = getProduct()
+  const productsCart: IProducto[] = getProduct()
     ? JSON.parse(getProduct() as string)
     : [];
 
@@ -11,9 +15,9 @@ export const agregarAlCarrito = (id: number, products: Producto[]) => {
     const productoEnCarrito = productsCart.find((p) => p.id === id);
 
     if (productoEnCarrito) {
-      productoEnCarrito.cantidad += 1;
+      productoEnCarrito.cantidad += cantidad;
     } else {
-      productsCart.push({ ...producto, cantidad: 1 });
+      productsCart.push({ ...producto, cantidad: cantidad });
     }
 
     saveProduct(productsCart);
@@ -22,7 +26,7 @@ export const agregarAlCarrito = (id: number, products: Producto[]) => {
 };
 
 export const eliminarDelCarrito = (id: number) => {
-  const productsCart: Producto[] = getProduct()
+  const productsCart: IProducto[] = getProduct()
     ? JSON.parse(getProduct() as string)
     : [];
 
