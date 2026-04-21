@@ -2,9 +2,11 @@ import type { Producto } from "../../../types/Product";
 import { eliminarDelCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
 
-getProduct;
 
-const carritoDiv = document.getElementById("seccion-carrito");
+const seccionDiv = document.getElementById("seccion-carrito");
+const carritoDiv = document.createElement("div");
+carritoDiv.classList.add("seccion-carrito");
+seccionDiv?.appendChild(carritoDiv);
 const cartItems: Producto[] = getProduct()
   ? JSON.parse(getProduct() as string)
   : [];
@@ -20,12 +22,13 @@ function renderCart(): void {
       carritoDiv.innerHTML = cartItems
         .map(
           (producto) => `
-      <div class="cart">
+      <div class="producto">
         <h3>${producto.nombre}</h3>
-        <p>Precio: $${producto.precio.toLocaleString()}</p>
-        <p>Cantidad: ${producto.cantidad}</p>
         <div><img src="${producto.img}" alt="${producto.nombre}"></div>
-        <button class="btn-eliminar" data-id="${producto.id}">Eliminar del carrito</button>
+        <p>Cantidad: ${producto.cantidad}</p>
+        <p>:$${producto.precio.toLocaleString()}</p>
+        <p> Subtotal: $${(producto.precio * producto.cantidad).toLocaleString()}</p>
+        <button class="btn-eliminar" data-id="${producto.id}">Eliminar</button>
       </div>
     `,
         )
@@ -48,8 +51,8 @@ function renderCart(): void {
 
   totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
   totalDiv.classList.add("total");
-  if (carritoDiv) {
-    carritoDiv.appendChild(totalDiv);
+  if (seccionDiv) {
+    seccionDiv.appendChild(totalDiv);
   }
 }
 

@@ -18,7 +18,6 @@ categories.forEach((categoria: Categoria) => {
   btn.textContent = categoria.nombre;
   botonesDiv.classList.add("btn-categoria");
   botonesDiv.appendChild(btn);
-  
 });
 
 function render(prods: Producto[]): void {
@@ -29,18 +28,17 @@ function render(prods: Producto[]): void {
     productosDiv2.appendChild(inputBusqueda);
     productosDiv2.appendChild(botonesDiv);
     productosDiv.appendChild(productosDiv2);
-    
+
     inputBusqueda.focus();
-    
+
     if (prods.length === 0) {
       productosDiv.innerHTML +=
-      "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
+        "<p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button>";
       const btnVolver = document.getElementById("btn-volver");
-      
+
       btnVolver?.addEventListener("click", () => {
         render(products);
       });
-      
       return;
     }
     const productosDiv3 = document.createElement("div");
