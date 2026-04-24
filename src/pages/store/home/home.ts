@@ -2,10 +2,14 @@ import { products, getCategories } from "../../../data/data";
 import type { ICategory } from "../../../types/categoria";
 import type { IProducto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
+import { getProduct } from "../../../utils/localStorage";
 
 const productosDiv = document.getElementById("seccion-productos");
 const inputBusqueda = document.createElement("input");
 const botonesDiv = document.createElement("div");
+const cantidadProductos = document.getElementById(
+  "cantidad-productos",
+) as HTMLDivElement;
 
 inputBusqueda.type = "text";
 inputBusqueda.placeholder = "Buscar productos...";
@@ -22,6 +26,12 @@ getCategories().forEach((categoria: ICategory) => {
 
 function render(prods: IProducto[]): void {
   if (productosDiv) {
+    console.log(
+      JSON.parse(getProduct()?.length ? (getProduct() as string) : "[]").length,
+    );
+    const cantidadEnCarrito =
+      JSON.parse((getProduct() as string) || "[]").length || 0;
+    cantidadProductos.innerHTML += `<p class="imagen-cart cantidad-productos">${cantidadEnCarrito}</p>`;
     productosDiv.innerHTML = "";
     const productosDiv2 = document.createElement("div");
     productosDiv2.classList.add("busqueda-productos");
@@ -89,7 +99,11 @@ function manejarAgregarAlCarrito(): void {
   botones.forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = Number(btn.getAttribute("data-id"));
-      const cantidad = Number((document.getElementById(`cantidad-${id}`) as HTMLInputElement)?.value) || 1;
+      const cantidad =
+        Number(
+          (document.getElementById(`cantidad-${id}`) as HTMLInputElement)
+            ?.value,
+        ) || 1;
       agregarAlCarrito(id, products, cantidad);
     });
   });

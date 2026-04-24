@@ -23,6 +23,7 @@ export const agregarAlCarrito = (
     saveProduct(productsCart);
     console.log(productsCart);
   }
+  window.location.reload();
 };
 
 export const eliminarDelCarrito = (id: number) => {

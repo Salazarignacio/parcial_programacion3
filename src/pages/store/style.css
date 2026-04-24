@@ -10,7 +10,8 @@
 }
 
 .contenedor1 {
-  background-color: hsl(0, 100%, 62%);
+      background: linear-gradient(135deg, hsl(0, 85%, 65%), hsl(0, 75%, 55%));
+      background: linear-gradient(135deg, hsl(0, 82%, 67%), hsl(0, 81%, 68%));
   padding-top: 50px;
   height: 15vh;
   text-align: center;
@@ -19,16 +20,7 @@
   align-items: center;
 }
 
-.imagen-cart {
-  position: fixed;
-  top: 30px;
-  right: 50px;
-}
 
-.imagen-cart:hover {
-  transform: scale(1.1);
-  transition: transform 0.2s ease;
-}
 
 
 body {
@@ -81,7 +73,7 @@ body {
 }
 
 .cart-nav img {
-  width: 100px;
+  width: 155px;
 }
 
 .total {
@@ -280,3 +272,46 @@ body {
 .btn-categoria button:hover {
   background-image: linear-gradient(rgb(236, 200, 42), rgb(243, 240, 55));
 }
+
+.imagen-cart {
+  position: fixed;
+  top: 30px;
+  right: 50px;
+}
+
+.imagen-cart:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.cantidad-productos {
+  
+  top: 44px;
+  right: 75px;
+
+  
+  position: fixed;
+
+
+
+  min-width: 30px;
+  height: 30px;
+  padding: 2px 6px;
+  background-image: linear-gradient(rgb(247, 111, 93), rgb(247, 91, 91));
+  border: solid 1px #f03737;
+  color: white;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px; /* círculo perfecto */
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+  pointer-events: none; /* no molesta al click del icono */
+}
+
