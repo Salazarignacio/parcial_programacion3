@@ -60,7 +60,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/pizza1/400/300",
     disponible: true,
     categorias: [categorias[0]],
-    cantidad: 1,
   },
   {
     id: 2,
@@ -73,7 +72,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/pizza2/400/300",
     disponible: true,
     categorias: [categorias[0]],
-    cantidad: 1,
   },
   {
     id: 3,
@@ -86,7 +84,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/pizza3/400/300",
     disponible: true,
     categorias: [categorias[0]],
-    cantidad: 1,
   },
   {
     id: 4,
@@ -99,7 +96,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/burger1/400/300",
     disponible: true,
     categorias: [categorias[1]],
-    cantidad: 1,
   },
   {
     id: 5,
@@ -112,7 +108,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/burger2/400/300",
     disponible: true,
     categorias: [categorias[1]],
-    cantidad: 1,
   },
   {
     id: 6,
@@ -125,7 +120,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/burger3/400/300",
     disponible: false,
     categorias: [categorias[1]],
-    cantidad: 1,
   },
   {
     id: 7,
@@ -138,7 +132,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/drink1/400/300",
     disponible: true,
     categorias: [categorias[2]],
-    cantidad: 1,
   },
   {
     id: 8,
@@ -151,7 +144,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/drink2/400/300",
     disponible: true,
     categorias: [categorias[2]],
-    cantidad: 1,
   },
   {
     id: 9,
@@ -164,7 +156,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/drink3/400/300",
     disponible: true,
     categorias: [categorias[2]],
-    cantidad: 1,
   },
   {
     id: 10,
@@ -177,7 +168,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/dessert1/400/300",
     disponible: true,
     categorias: [categorias[3]],
-    cantidad: 1,
   },
   {
     id: 11,
@@ -190,7 +180,6 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/dessert2/400/300",
     disponible: true,
     categorias: [categorias[3]],
-    cantidad: 1,
   },
   {
     id: 12,
@@ -203,6 +192,5 @@ export const products: IProducto[] = [
     imagen: "https://picsum.photos/seed/dessert3/400/300",
     disponible: false,
     categorias: [categorias[3]],
-    cantidad: 1,
   },
 ];

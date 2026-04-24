@@ -25,9 +25,9 @@ function renderCart(): void {
       <div class="producto-cart">
         <h3>${producto.nombre}</h3>
         <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
-        <p>Cantidad: ${producto.cantidad}</p>
+        <p>Cantidad: ${producto.cantidad || 1}</p>
         <p>$${producto.precio.toLocaleString()}</p>
-        <p> Subtotal: $${(producto.precio * producto.cantidad).toLocaleString()}</p>
+        <p> Subtotal: $${(producto.precio * (producto.cantidad || 1)).toLocaleString()}</p>
         <button class="btn-eliminar" data-id="${producto.id}">Eliminar</button>
       </div>
     `,
@@ -46,7 +46,7 @@ function renderCart(): void {
   });
 
   const total = cartItems.reduce((acc, producto) => {
-    return acc + producto.precio * producto.cantidad;
+    return acc + producto.precio * (producto.cantidad || 1);
   }, 0);
 
   totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
