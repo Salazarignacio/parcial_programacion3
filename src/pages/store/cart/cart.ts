@@ -1,10 +1,12 @@
 import type { IProducto } from "../../../types/Product";
-import { eliminarDelCarrito } from "../../../utils/cart";
+import { eliminarDelCarrito, vaciarCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
-
 
 const seccionDiv = document.getElementById("seccion-carrito");
 const carritoDiv = document.createElement("div");
+const vaciarBtn = document.getElementById(
+  "vaciar-carrito",
+) as HTMLButtonElement;
 carritoDiv.classList.add("seccion-carrito");
 seccionDiv?.appendChild(carritoDiv);
 const cartItems: IProducto[] = getProduct()
@@ -15,7 +17,7 @@ const totalDiv = document.createElement("div");
 function renderCart(): void {
   if (cartItems.length === 0) {
     if (carritoDiv) {
-      carritoDiv.innerHTML = "<p>El carrito está vacío.</p>";
+      carritoDiv.innerHTML = "<p class=\"vacio\">El carrito está vacío.</p>";
     }
   } else {
     if (carritoDiv) {
@@ -23,11 +25,11 @@ function renderCart(): void {
         .map(
           (producto) => `
       <div class="producto-cart">
-        <h3>${producto.nombre}</h3>
-        <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
-        <p>Cantidad: ${producto.cantidad || 1}</p>
+      <div><img src="${producto.imagen}" alt="${producto.nombre}"></div>
+      <h3>${producto.nombre}</h3>
+        <p>${producto.cantidad || 1}</p>
         <p>$${producto.precio.toLocaleString()}</p>
-        <p> Subtotal: $${(producto.precio * (producto.cantidad || 1)).toLocaleString()}</p>
+        <p>$${(producto.precio * (producto.cantidad || 1)).toLocaleString()}</p>
         <button class="btn-eliminar" data-id="${producto.id}">Eliminar</button>
       </div>
     `,
@@ -55,5 +57,8 @@ function renderCart(): void {
     seccionDiv.appendChild(totalDiv);
   }
 }
+vaciarBtn.addEventListener("click", () => {
+  vaciarCarrito();
+});
 
 renderCart();

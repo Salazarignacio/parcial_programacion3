@@ -35,3 +35,8 @@ export const eliminarDelCarrito = (id: number) => {
   saveProduct(updatedCart);
   window.location.reload();
 };
+
+export const vaciarCarrito = () => {
+  saveProduct([]);
+  window.location.reload();
+};
