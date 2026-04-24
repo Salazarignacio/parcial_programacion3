@@ -19,8 +19,13 @@ botonesDiv.classList.add("botones");
 
 getCategories().forEach((categoria: ICategory) => {
   const btn = document.createElement("button");
-  btn.textContent = categoria.nombre;
+  const img = document.createElement("img");
+  img.classList.add("categoria-img");
+  btn.textContent = categoria.nombre; 
   botonesDiv.classList.add("btn-categoria");
+  img.src = `../../../utils/images/${categoria.nombre}.png`;
+  img.alt = `Imagen de ${categoria.nombre}`;
+  btn.appendChild(img);
   botonesDiv.appendChild(btn);
 });
 
@@ -42,7 +47,7 @@ function render(prods: IProducto[]): void {
     inputBusqueda.focus();
 
     if (prods.length === 0) {
-      productosDiv.innerHTML += `<div class="sin-productos"><p>No se encontraron productos.</p> <button id='btn-volver'>Volver a ver todos</button></div>`;
+      productosDiv.innerHTML += `<div class="sin-productos"><p>No se encontraron productos.</p> <button id='btn-volver' class='btn-agregar'>Volver a ver todos</button></div>`;
       const btnVolver = document.getElementById("btn-volver");
 
       btnVolver?.addEventListener("click", () => {
@@ -77,9 +82,15 @@ function render(prods: IProducto[]): void {
 }
 
 botonesDiv.addEventListener("click", (e) => {
-  const target = e.target as HTMLButtonElement;
+    const target = e.target as HTMLElement;
+
+  const button = target.closest("button");
+  if (!button) return;
+
+  const categoria = button.textContent;
+
   const filtradosproducts: IProducto[] = products.filter((p) =>
-    p.categorias.some((c: ICategory) => c.nombre === target.textContent),
+    p.categorias.some((c: ICategory) => c.nombre === categoria),
   );
   render(filtradosproducts);
 });
