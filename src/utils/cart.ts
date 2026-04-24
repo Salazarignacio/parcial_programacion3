@@ -14,7 +14,7 @@ export const agregarAlCarrito = (
   if (producto) {
     const productoEnCarrito = productsCart.find((p) => p.id === id);
 
-    if (productoEnCarrito) {
+    if (productoEnCarrito && productoEnCarrito.cantidad) {
       productoEnCarrito.cantidad += cantidad;
     } else {
       productsCart.push({ ...producto, cantidad: cantidad });
