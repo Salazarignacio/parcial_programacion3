@@ -21,7 +21,7 @@ getCategories().forEach((categoria: ICategory) => {
   const btn = document.createElement("button");
   const img = document.createElement("img");
   img.classList.add("categoria-img");
-  btn.textContent = categoria.nombre; 
+  btn.textContent = categoria.nombre;
   botonesDiv.classList.add("btn-categoria");
   img.src = `../../../utils/images/${categoria.nombre}.png`;
   img.alt = `Imagen de ${categoria.nombre}`;
@@ -81,17 +81,29 @@ function render(prods: IProducto[]): void {
   }
 }
 
+const botones = botonesDiv.querySelectorAll("button");
+
 botonesDiv.addEventListener("click", (e) => {
-    const target = e.target as HTMLElement;
+  const target = e.target as HTMLElement;
 
   const button = target.closest("button");
   if (!button) return;
+
+  if (button.classList.contains("active")) {
+    button.classList.remove("active");
+    render(products);
+    return;
+  }
+
+  botones.forEach((b) => b.classList.remove("active"));
+  button.classList.add("active");
 
   const categoria = button.textContent;
 
   const filtradosproducts: IProducto[] = products.filter((p) =>
     p.categorias.some((c: ICategory) => c.nombre === categoria),
   );
+
   render(filtradosproducts);
 });
 
