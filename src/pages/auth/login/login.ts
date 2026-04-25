@@ -1,12 +1,12 @@
 import type { IUser } from "../../../types/IUser";
-import type { Rol } from "../../../types/Rol";
+
 import { getUsersLocalStorage } from "../../../utils/localStorage";
 import { navigate } from "../../../utils/navigate";
 
 const form = document.getElementById("form") as HTMLFormElement;
 const inputEmail = document.getElementById("email") as HTMLInputElement;
 const inputPassword = document.getElementById("password") as HTMLInputElement;
-/* const selectRol = document.getElementById("rol") as HTMLSelectElement; */
+
 
 form.addEventListener("submit", (e: SubmitEvent) => {
   e.preventDefault();
@@ -14,7 +14,7 @@ form.addEventListener("submit", (e: SubmitEvent) => {
 
   const valueEmail = inputEmail.value;
   const valuePassword = inputPassword.value;
-  /* const valueRol = selectRol.value as Rol; */
+  
   console.log(users);
 
   const user = users.find(
