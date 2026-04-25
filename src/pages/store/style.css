@@ -21,6 +21,17 @@
   align-items: center;
 }
 
+.contenedor1 h1 {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
 body {
   background: radial-gradient(circle at 20% 30%, #ffffff, #e6e6e6);
   color: #fff;
@@ -111,6 +122,7 @@ min-height: 50vh;
 }
 
 .cart-nav img {
+  z-index: 1;
   width: 155px;
 }
 
@@ -160,7 +172,7 @@ min-height: 50vh;
   height: 60px;
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  
   text-align: center;
   font-size: 1.5rem;
   border-radius: 8px;
@@ -237,6 +249,7 @@ min-height: 50vh;
   height: 60px;
   object-fit: cover;
   border-radius: 4px;
+  
 }
 
 /* Contenedor de info */
@@ -357,6 +370,7 @@ border: none  ;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
   pointer-events: none; /* no molesta al click del icono */
+  z-index: 2; /* siempre encima del icono */
 }
 
 .contenedor-carrito {
