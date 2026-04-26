@@ -139,6 +139,7 @@ min-height: 50vh;
   background: #ffffff;
   border-radius: 18px;
   padding: 12px;
+  padding-top: 0;
   width: 280px;
 
   color: #0f172a;
