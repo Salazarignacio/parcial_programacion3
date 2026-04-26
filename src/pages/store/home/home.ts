@@ -60,16 +60,21 @@ function render(prods: IProducto[]): void {
       div.classList.add("producto");
 
       div.innerHTML = `
-      <div class="contenedor-agregar"><img src="${producto.imagen}" alt="${producto.nombre}"></div>
+      <div class="contenedor-agregar">
+      <a class="detail-nav" href="../../store/product-detail/product-detail.html?id=${producto.id}">
+      <img src="${producto.imagen}" alt="${producto.nombre}"></a>
+      </div>
+      
       <h3>${producto.nombre}</h3>
-<p class="descripcion">${producto.descripcion}</p>
-<p class="precio">$${producto.precio.toLocaleString()}</p>
-<div class="agregar-carrito">
+      
+      <p class="precio">$${producto.precio.toLocaleString()}</p>
+      <div class="agregar-carrito">
 
-<input type="number" min="1" max="${producto.stock}" value="1" id="cantidad-${producto.id}" class="input-cantidad">
-<button class="btn-agregar" data-id="${producto.id}">Agregar</button>
+      <input type="number" min="1" max="${producto.stock}" value="1" id="cantidad-${producto.id}" class="input-cantidad">
+      <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
 
-</div>
+      </div>
+
     `;
       productosDiv3.appendChild(div);
     });
