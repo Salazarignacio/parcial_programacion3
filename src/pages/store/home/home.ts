@@ -31,9 +31,6 @@ getCategories().forEach((categoria: ICategory) => {
 
 function render(prods: IProducto[]): void {
   if (productosDiv) {
-    console.log(
-      JSON.parse(getProduct()?.length ? (getProduct() as string) : "[]").length,
-    );
     const cantidadEnCarrito =
       JSON.parse((getProduct() as string) || "[]").length || 0;
     cantidadProductos.innerHTML += `<p class="imagen-cart cantidad-productos">${cantidadEnCarrito}</p>`;
@@ -63,8 +60,8 @@ function render(prods: IProducto[]): void {
       div.classList.add("producto");
 
       div.innerHTML = `
+      <div class="contenedor-agregar"><img src="${producto.imagen}" alt="${producto.nombre}"></div>
       <h3>${producto.nombre}</h3>
-<div class="contenedor-agregar"><img src="${producto.imagen}" alt="${producto.nombre}"></div>
 <p class="descripcion">${producto.descripcion}</p>
 <p class="precio">$${producto.precio.toLocaleString()}</p>
 <div class="agregar-carrito">
