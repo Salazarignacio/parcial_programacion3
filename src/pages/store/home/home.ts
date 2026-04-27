@@ -1,5 +1,5 @@
 import { products, getCategories } from "../../../data/data";
-import type { ICategory } from "../../../types/Categoria";
+import type { ICategory } from "../../../types/Category";
 import type { IProducto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
