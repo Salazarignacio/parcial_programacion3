@@ -23,7 +23,7 @@ getCategories().forEach((categoria: ICategory) => {
   img.classList.add("categoria-img");
   btn.textContent = categoria.nombre;
   botonesDiv.classList.add("btn-categoria");
-  img.src = `/images/${categoria.nombre}.png`;
+  img.src = `/images/${categoria.nombre.toLowerCase()}.png`;
   img.alt = `Imagen de ${categoria.nombre}`;
   btn.appendChild(img);
   botonesDiv.appendChild(btn);
