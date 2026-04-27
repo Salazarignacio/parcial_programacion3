@@ -103,10 +103,13 @@ body {
 
 .listado-productos {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center;
+  gap: 30px;
+  padding: 20px;
 }
 .seccion-carrito {
   display: flex;
@@ -130,9 +133,8 @@ body {
 .producto {
   background: #ffffff;
   border-radius: 18px;
-  padding: 12px;
-  padding-top: 0;
-  width: 280px;
+  width: 100%;
+  max-width: 320px;
 
   color: #0f172a;
 
@@ -143,14 +145,29 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
-
   overflow: hidden; /* 👈 clave para la imagen */
+}
+
+.producto h3, .producto .precio, .producto .agregar-carrito {
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    margin-top: 15px;
 }
 
 .detail-nav {
   text-decoration: none;
   color: #020617;
+  width: 100%;
+}
+
+.producto img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
 }
 
 .producto:hover {
@@ -168,24 +185,17 @@ body {
   gap: 10px;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
+  padding-bottom: 15px !important;
 }
 
 .agregar-carrito input {
   width: 60px;
-  height: 60px;
-  padding: 5px;
+  height: 50px;
   border: 1px solid #ccc;
-
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border-radius: 8px;
-  padding: 8px;
-  border: 1px solid #ccc;
-}
-.agregar-carrito input:focus {
-  border-radius: 8px;
-  padding: 8px;
-  border: 1px solid #ccc;
 }
 
 .btn-agregar {
@@ -195,11 +205,11 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
 
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  height: 60px;
-  width: 200px;
+  height: 50px;
+  flex: 1;
 }
 
 .btn-agregar:hover {
