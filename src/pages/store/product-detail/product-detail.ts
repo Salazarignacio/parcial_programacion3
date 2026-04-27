@@ -36,10 +36,10 @@ if (producto && productoDiv) {
   
   </div>
     `;
-
+/* 
     console.log(cantidadEnCarrito);
     
-    productoDiv.appendChild(cantidadEnCarrito);
+    productoDiv.appendChild(cantidadEnCarrito); */
 
   const btnAgregar = document.querySelector(`.btn-agregar[data-id="${id}"]`);
 
