@@ -25,8 +25,8 @@ if (producto && productoDiv) {
   <p class="precio">$${producto.precio.toLocaleString()}</p>
   <div class="agregar-carrito">
   <p>Unidades disponibles: ${producto.stock}</p>
-  <div>
-  <p>Cantidad</p>
+  <div class="contenedor-agregar">
+  
   <input type="number" min="1" max="${producto.stock}" value="1" id="cantidad-${producto.id}" class="input-cantidad">
   <button class="btn-agregar" data-id="${producto.id}">Agregar</button>
   </div>
