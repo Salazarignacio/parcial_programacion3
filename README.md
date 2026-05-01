@@ -58,7 +58,7 @@ Esto permite que la sesión y el carrito se mantengan incluso al recargar la pá
 
 📸 Capturas
 
-(Podés agregar acá screenshots de tu app para mostrarla visualmente)
+![alt text](image.png)
 
 🔗 Demo / Repo
 📦 Repositorio: (agregá acá el link a tu repo)
