@@ -2,6 +2,8 @@
 
 Aplicación web de carrito de compras para una tienda de comidas, inspirada en plataformas como PedidosYa. Desarrollada con TypeScript, HTML y CSS puro, sin uso de frameworks.
 
+📌 Enlace al Deploy https://parcial-programacion3.vercel.app/src/pages/auth/login/login.html
+
 🚀 Descripción
 
 Food Store es una app frontend que permite a los usuarios registrarse, iniciar sesión y realizar compras agregando productos a un carrito dinámico. La información se persiste en el navegador utilizando LocalStorage, tanto para los datos del usuario como para el estado del carrito.
