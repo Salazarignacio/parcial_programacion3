@@ -1,7 +1,13 @@
 import type { IProducto } from "../../../types/Product";
 import { eliminarDelCarrito, vaciarCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
+import { getUser } from "../../../utils/localStorage";
 
+const user = JSON.parse(getUser() || "{}");
+if (!user?.loggedIn) {
+  alert("Debes iniciar sesión para acceder a la tienda.");
+  window.location.href = "../../auth/login/login.html";
+}
 const seccionDiv = document.getElementById("seccion-carrito");
 const carritoDiv = document.createElement("div");
 const vaciarBtn = document.getElementById(

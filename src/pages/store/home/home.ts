@@ -3,6 +3,13 @@ import type { ICategory } from "../../../types/Category";
 import type { IProducto } from "../../../types/Product";
 import { agregarAlCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
+import { getUser } from "../../../utils/localStorage";
+
+const user = JSON.parse(getUser() || "{}");
+if (!user?.loggedIn) {
+  alert("Debes iniciar sesión para acceder a la tienda.");
+  window.location.href = "../../auth/login/login.html";
+}
 
 const productosDiv = document.getElementById("seccion-productos");
 const inputBusqueda = document.createElement("input");
