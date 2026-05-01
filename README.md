@@ -1,83 +1,67 @@
-# Proyecto: Protección de Rutas (Educativo)
+🍔 Food Store App
 
-## ✍️ Descripción
+Aplicación web de carrito de compras para una tienda de comidas, inspirada en plataformas como PedidosYa. Desarrollada con TypeScript, HTML y CSS puro, sin uso de frameworks.
 
-Este es un proyecto de demostración creado con fines educativos para ilustrar un mecanismo básico de protección de rutas en el lado del cliente (frontend) utilizando **Vite** y **TypeScript**.
+🚀 Descripción
 
-El objetivo es mostrar cómo se puede restringir el acceso a ciertas páginas según el rol de un usuario (por ejemplo, `ADMIN` o `CLIENT`).
+Food Store es una app frontend que permite a los usuarios registrarse, iniciar sesión y realizar compras agregando productos a un carrito dinámico. La información se persiste en el navegador utilizando LocalStorage, tanto para los datos del usuario como para el estado del carrito.
 
----
+El foco del proyecto estuvo en construir una experiencia de usuario clara, intuitiva y visualmente moderna.
 
-## ⚠️ ¡Importante! Nivel de Seguridad
+🛠️ Tecnologías utilizadas
+TypeScript
+HTML5
+CSS3
+LocalStorage (Web API)
+✨ Funcionalidades principales
+🔐 Autenticación de usuario
+Registro de nuevos usuarios
+Login persistente usando LocalStorage
+🛍️ Tienda de productos
+Visualización de productos con imágenes claras y definidas
+Página de detalle de producto
+🛒 Carrito de compras
+Agregado de productos con cantidad personalizada
+Cálculo automático de:
+Subtotales por producto
+Total general
+Persistencia del carrito en LocalStorage
+🔔 Indicador de carrito
+Notificación visual con la cantidad de productos agregados
+🎨 Diseño y UX
+Interfaz moderna y limpia
+Uso de hovers interactivos para mejorar la experiencia
+Información clara y bien jerarquizada
+Diseño responsive
+Enfoque en usabilidad y feedback visual al usuario
+📂 Estructura general
+/src
+  /pages
+    /auth
+      login
+      register
+    /store
+    /product-detail
+    /cart
+  /scripts
+  /styles
+index.html
+💾 Persistencia de datos
 
-La protección de rutas implementada en este proyecto **NO ES SEGURA** y no debe utilizarse en un entorno de producción.
+La aplicación utiliza LocalStorage para:
 
-- **Razón**: La lógica de autenticación se basa en datos guardados en `localStorage` en el navegador del usuario.
-- **Riesgo**: Cualquier usuario con conocimientos técnicos básicos puede abrir las herramientas de desarrollador del navegador para inspeccionar, modificar o eliminar los datos de `localStorage`, obteniendo así acceso no autorizado a rutas protegidas.
+Guardar información del usuario autenticado
+Mantener el estado del carrito
+Gestionar los productos agregados
 
-Este enfoque es útil únicamente para fines de aprendizaje y para prototipos de bajo riesgo. La seguridad real debe implementarse en el **backend**.
+Esto permite que la sesión y el carrito se mantengan incluso al recargar la página.
 
----
+📸 Capturas
 
-## 🚀 Instalación y Uso
+(Podés agregar acá screenshots de tu app para mostrarla visualmente)
 
-Se recomienda usar `pnpm` como gestor de paquetes para mayor eficiencia en el manejo de dependencias.
+🔗 Demo / Repo
+📦 Repositorio: (agregá acá el link a tu repo)
+📌 Notas
 
-### 1. Instalar pnpm
-
-Si no tienes `pnpm` instalado, puedes hacerlo fácilmente a través de `npm` (que viene con Node.js) ejecutando el siguiente comando en tu terminal:
-
-```bash
-npm install -g pnpm
-```
-
-### 2. Instalar Dependencias del Proyecto
-
-Una vez en la carpeta raíz del proyecto, instala las dependencias necesarias con `pnpm`:
-
-```bash
-pnpm install
-```
-
-### 3. Ejecutar el Proyecto
-
-Para iniciar el servidor de desarrollo de Vite, ejecuta:
-
-```bash
-pnpm dev
-```
-
-La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
-
----
-
-## ⚙️ ¿Cómo Funciona la Protección de Rutas?
-
-El mecanismo es simple y se gestiona desde el código TypeScript en la carpeta `src/utils`:
-
-1.  **Inicio de Sesión**: Cuando un usuario se "loguea", su información (incluido su rol) se guarda como un string JSON en `localStorage`.
-2.  **Carga de Página Protegida**: Cada vez que se intenta cargar una página protegida (ej. la página de Administrador), se ejecuta un script de verificación (`checkAuhtUser` en `src/utils/auth.ts`).
-3.  **Verificación**: El script comprueba:
-    - Si existe un usuario en `localStorage`. Si no, redirige al login.
-    - Si el rol del usuario guardado coincide con el rol requerido para acceder a esa página. Si no coincide, lo redirige a una página de acceso denegado o a su "home" correspondiente.
-4.  **Cierre de Sesión (Logout)**: Al cerrar sesión, la información del usuario se elimina de `localStorage`.
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-/
-├── src/
-│   ├── pages/                # Contiene las páginas de la aplicación
-│   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
-│   └── utils/                # Lógica reutilizable
-│       ├── auth.ts           # Función principal de verificación de rol y sesión
-│       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
-│       └── navigate.ts       # Función para redirigir al usuario
-├── package.json              # Dependencias y scripts
-└── README.md                 # Este archivo
-```
+Este proyecto fue desarrollado como parte de una evaluación académica, con el objetivo de aplicar conceptos de desarrollo frontend sin frameworks, manejo de estado y buenas prácticas de UX/UI.
