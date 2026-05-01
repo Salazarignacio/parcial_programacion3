@@ -1,6 +1,7 @@
 import { products, getCategories } from "../../../data/data";
 import type { ICategory } from "../../../types/Category";
 import type { IProducto } from "../../../types/Product";
+import { logout } from "../../../utils/auth";
 import { agregarAlCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
 import { getUser } from "../../../utils/localStorage";
@@ -10,6 +11,14 @@ if (!user?.loggedIn) {
   alert("Debes iniciar sesión para acceder a la tienda.");
   window.location.href = "../../auth/login/login.html";
 }
+
+const userDiv = document.createElement("div");
+userDiv.classList.add("user-info");
+userDiv.innerHTML = `<p><i class="fa-solid fa-user"></i> ${user.email}</p>`;
+userDiv.addEventListener("click", () => {
+  logout();
+  alert("Has cerrado sesión.");
+});
 
 const productosDiv = document.getElementById("seccion-productos");
 const inputBusqueda = document.createElement("input");
@@ -38,12 +47,14 @@ getCategories().forEach((categoria: ICategory) => {
 
 function render(prods: IProducto[]): void {
   if (productosDiv) {
+    
     const cantidadEnCarrito =
       JSON.parse((getProduct() as string) || "[]").length || 0;
     cantidadProductos.innerHTML += `<p class="imagen-cart cantidad-productos">${cantidadEnCarrito}</p>`;
     productosDiv.innerHTML = "";
     const productosDiv2 = document.createElement("div");
     productosDiv2.classList.add("busqueda-productos");
+    productosDiv2.appendChild(userDiv);
     productosDiv2.appendChild(inputBusqueda);
     productosDiv2.appendChild(botonesDiv);
     productosDiv.appendChild(productosDiv2);
@@ -86,6 +97,7 @@ function render(prods: IProducto[]): void {
       productosDiv3.appendChild(div);
     });
     productosDiv.appendChild(productosDiv3);
+    productosDiv.appendChild(userDiv);
     manejarAgregarAlCarrito();
   }
 }

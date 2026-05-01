@@ -2,12 +2,21 @@ import type { IProducto } from "../../../types/Product";
 import { eliminarDelCarrito, vaciarCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
 import { getUser } from "../../../utils/localStorage";
+import { logout } from "../../../utils/auth";
 
 const user = JSON.parse(getUser() || "{}");
 if (!user?.loggedIn) {
   alert("Debes iniciar sesión para acceder a la tienda.");
   window.location.href = "../../auth/login/login.html";
 }
+const userDiv = document.createElement("div");
+userDiv.classList.add("user-info");
+userDiv.innerHTML = `<p><i class="fa-solid fa-user"></i> ${user.email}</p>`;
+
+userDiv.addEventListener("click", () => {
+  logout();
+  alert("Has cerrado sesión.");
+});
 const seccionDiv = document.getElementById("seccion-carrito");
 const carritoDiv = document.createElement("div");
 const vaciarBtn = document.getElementById(
@@ -15,6 +24,7 @@ const vaciarBtn = document.getElementById(
 ) as HTMLButtonElement;
 carritoDiv.classList.add("seccion-carrito");
 seccionDiv?.appendChild(carritoDiv);
+
 const cartItems: IProducto[] = getProduct()
   ? JSON.parse(getProduct() as string)
   : [];
@@ -60,6 +70,7 @@ function renderCart(): void {
   totalDiv.innerHTML = `<h2>Total: $${total.toLocaleString()}</h2>`;
   totalDiv.classList.add("total");
   if (seccionDiv) {
+    carritoDiv?.appendChild(userDiv);
     seccionDiv.appendChild(totalDiv);
   }
 }

@@ -312,3 +312,53 @@ body {
     right: 35px;
   }
 }
+
+ .user-info {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #020617;
+  cursor: pointer;
+ }
+
+
+
+.user-info::after {
+  content: "Click para cerrar sesión";
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Flechita del tooltip */
+.user-info::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1a1a1a;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.user-info:hover::after,
+.user-info:hover::before {
+  opacity: 1;
+}

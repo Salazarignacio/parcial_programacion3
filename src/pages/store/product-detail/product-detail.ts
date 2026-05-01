@@ -2,13 +2,21 @@ import { products } from "../../../data/data";
 import { agregarAlCarrito } from "../../../utils/cart";
 import { getProduct } from "../../../utils/localStorage";
 import { getUser } from "../../../utils/localStorage";
+import { logout } from "../../../utils/auth";
 
 const user = JSON.parse(getUser() || "{}");
 if (!user?.loggedIn) {
   alert("Debes iniciar sesión para acceder a la tienda.");
   window.location.href = "../../auth/login/login.html";
 }
+const userDiv = document.createElement("div");
+userDiv.classList.add("user-info");
+userDiv.innerHTML = `<p><i class="fa-solid fa-user"></i> ${user.email}</p>`;
 
+userDiv.addEventListener("click", () => {
+  logout();
+  alert("Has cerrado sesión.");
+});
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 const productoDiv = document.getElementById("product-detail");
@@ -43,10 +51,8 @@ if (producto && productoDiv) {
   
   </div>
     `;
-/* 
-    console.log(cantidadEnCarrito);
-    
-    productoDiv.appendChild(cantidadEnCarrito); */
+
+    productoDiv.appendChild(userDiv)
 
   const btnAgregar = document.querySelector(`.btn-agregar[data-id="${id}"]`);
 
