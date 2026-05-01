@@ -59,6 +59,8 @@ Esto permite que la sesión y el carrito se mantengan incluso al recargar la pá
 📸 Capturas
 
 ![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 🔗 Demo / Repo
 📦 Repositorio: (agregá acá el link a tu repo)
